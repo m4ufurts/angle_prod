@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% load widget_tweaks %}
+{% load getattribute %}
+
+{% block content %}
+<div class="container" style="max-width: 700px;">
+    <a href="{% url create %}">
+        <button class="w-25 mt-4 btn btn-outline-primary me-2" type="submit">Create</button>
+    </a>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                {% for attr in display_list %}
+                <th>{{ attr }}</th>
+                {% endfor %}
+                <th>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for obj in info %}
+            <tr>
+                {% for attr in display_list %}
+                <td >   
+                    <a href="{% url update obj.id %}">
+                        {{ obj | getattribute:attr }}
+                    </a>
+                </td>
+                {% endfor %}
+                <td style="text-align: end; padding-right: 50px;" class="w-25">
+                    <a href="{% url delete obj.id %}">
+                        delete
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+
+
+</div> 
+{% endblock %}
