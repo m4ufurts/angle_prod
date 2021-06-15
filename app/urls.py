@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 
-from .views import RawMaterial, ProductionType, Breakdown, Input
+from .views import RawMaterial, ProductionType, Breakdown, Input, Login
 
 urlpatterns = [
     #Raw Material
@@ -27,4 +27,8 @@ urlpatterns = [
     path('create', Input.create.as_view(), name="ip_create"), 
     path('update/<int:pk>', Input.update.as_view(), name="ip_update"),
     path('delete/<int:delete_id>', Input.delete, name="ip_delete"), 
+
+    #Login
+    path('login', Login.login, name="login"), 
+    path('logout', Login.logout, name="logout"), 
 ]
