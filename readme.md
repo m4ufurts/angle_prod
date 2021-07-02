@@ -1,10 +1,10 @@
-#Godroid#
-###Instalação###
+# Godroid
+### Instalação
 ```
 pip install -r requirements.txt
 ```
 
-###Registrar o app###
+### Registrar o app
 **project/setting.py**
 ```
 INSTALLED_APPS = [
@@ -13,7 +13,7 @@ INSTALLED_APPS = [
     'app',
 ]
 ```
-###Registrar as urls###
+### Registrar as urls
 **project/urls.py**
 ```
 urlpatterns = [
@@ -21,14 +21,14 @@ urlpatterns = [
     path('', include('app.urls'))
 ]
 ```
-###Criar a pasta 'templates'###
+### Criar a pasta 'templates'
 
-###Configurar modelos / 'views'###
+### Configurar modelos / 'views'
 -Criar a pasta 'models'
 -Importar os arquivos no __init__.py
 -Deletar 'models.py'
 
-###Configurar formulários
+### Configurar formulários
 ```
 pip install django-widget-tweaks
 ```
