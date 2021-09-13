@@ -13,7 +13,16 @@ class Produto( BaseModel):
     # atribuição de percentual de perda/scrap
     perda = models.FloatField()
     
-    display_list =['id','tipo', 'categoria_produto', 'offset', 'perda', 'data_registro', 'data_edicao']
+    # valor referência de produção por tipo_produto
+    ref_kg = models.FloatField()
+
+    # valor percentual de ineficiência por tipo_produto
+    OEE = models.FloatField()
+
+    # valor percentual para tipo_produto
+    markup = models.FloatField()
+
+    display_list =['id','tipo', 'categoria_produto', 'offset', 'perda', 'ref_kg', 'OEE', 'markup', 'data_registro', 'data_edicao']
 
     def __str__(self):
         return self.tipo

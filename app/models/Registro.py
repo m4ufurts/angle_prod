@@ -31,6 +31,20 @@ class Registro( BaseModel ):
     # é o custo de material calculado a partir do peso bruto
     custo_calc = models.FloatField()
 
+    # v2
+    volume_por_ano = models.FloatField()
+
+    pcs = models.FloatField()
+    mao_obra = models.FloatField()
+    energia = models.FloatField()
+    depreciacao = models.FloatField()
+
+    custo_proc = models.FloatField()
+    custo_esperado = models.FloatField() #should_cost
+
+    ganho_anual = models.FloatField()
+    angle_anual = models.FloatField()
+
     display_list = [
         'id',
         'produto',
@@ -44,4 +58,5 @@ class Registro( BaseModel ):
         'preco_pago',
         'data_registro',
         'data_edicao',
+        'volume_por_ano'
     ]

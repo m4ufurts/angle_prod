@@ -15,7 +15,7 @@ def index(request):
 
 class create(generic.CreateView):
     model = Produto
-    fields=['tipo', 'categoria_produto', 'offset', 'perda']
+    fields=['tipo', 'categoria_produto', 'offset', 'perda', 'ref_kg', 'OEE', 'markup']
     template_name = "save.html"
     success_url = "/productiontype"
 
@@ -25,7 +25,7 @@ class create(generic.CreateView):
 
 class update(generic.UpdateView):
     model = Produto
-    fields=['tipo', 'categoria_produto', 'offset', 'perda']
+    fields=['tipo', 'categoria_produto', 'offset', 'perda', 'ref_kg', 'OEE', 'markup']
     template_name = "save.html"
     success_url = "/productiontype"
 

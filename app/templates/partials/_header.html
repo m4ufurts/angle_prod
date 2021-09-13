@@ -1,16 +1,20 @@
-<header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-    <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
-        <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
+<header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 border-bottom">
+    <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
     </a>
 
-    <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+    <ul class="nav mb justify-content-center">
         <li><a href="{% url 'ip_index' %}" class="nav-link px-2 link-secondary">Registro</a></li>
         <li><a href="{% url 'rm_index' %}" class="nav-link px-2 link-dark">Material</a></li>
         <li><a href="{% url 'bd_index' %}" class="nav-link px-2 link-dark">Quebra</a></li>
         <li><a href="{% url 'pt_index' %}" class="nav-link px-2 link-dark">Produto</a></li>
+        <li><a href="{% url 'energia_index' %}" class="nav-link px-2 link-dark">Energia</a></li>
+        <li><a href="{% url 'investimento_index' %}" class="nav-link px-2 link-dark">Investimento</a></li>
+        <li><a href="{% url 'operador_index' %}" class="nav-link px-2 link-dark">Operador</a></li>
+        <li><a href="{% url 'processo_index' %}" class="nav-link px-2 link-dark">Processo</a></li>
+        <li><a href="{% url 'quebra_processo_index' %}" class="nav-link px-2 link-dark">Quebra Proc</a></li>
     </ul>
 
-    <div class="col-md-3 text-end">
+    <div class="text-end">
         {%if user.is_authenticated %}
             <a href="{% url 'logout' %}">
                 <button type="button" class="btn btn-primary">Logout</button>

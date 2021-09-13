@@ -21,16 +21,18 @@ def calc(form) :
     dimensao = largura * comprimento * altura / 1000000
 
     produto = form.instance.produto
+    quebras =  Quebra.objects.filter(produto=produto.id)
 
     sum = 0
-
-    quebras =  Quebra.objects.filter(produto=produto.id)
+    pcs = 0
     
     for quebra in quebras:
         material = Material.objects.get(id = quebra.material.id)
-        sum += dimensao * (1 + produto.perda) * produto.offset *  material.densidade * quebra.porcentagem * material.custo_kg
+        peso = dimensao * (1 + produto.perda) * produto.offset *  material.densidade * quebra.porcentagem
+        sum += peso * material.custo_kg
+        pcs += produto.ref_kg / peso * produto.OEE
 
-    return sum
+    return {'sum': sum, 'pcs': pcs}
     
 class create(generic.CreateView):
     model = Registro
@@ -43,17 +45,21 @@ class create(generic.CreateView):
         'largura',
         'comprimento',
         'altura',
-        'preco_pago',
+        #'preco_pago',
+        'volume_por_ano',
     ]
 
     template_name = "save.html"
     success_url = "/"
 
     def form_valid(self, form):
-        sum = calc(form)
+        r = calc(form)
 
-        form.instance.custo_calc = sum
-        form.instance.preco_pago = sum
+        print(r)
+
+        form.instance.custo_calc = r["sum"]
+        form.instance.preco_pago = r["sum"]
+        form.instance.pcs = r["pcs"]
         form.instance.usuario = self.request.user
 
         return super().form_valid(form)
@@ -70,13 +76,10 @@ class update(generic.UpdateView):
         'comprimento',
         'altura',
         'preco_pago',
+        'volume_por_ano',
     ]
     template_name = "save.html"
     success_url = "/"
-
-    #def form_valid(self, form):
-    #    form.instance.brl_kg = 2 * form.instance.density
-    #    return super().form_valid(form)
 
 def delete(request, delete_id):
     Registro.objects.get(id=delete_id).delete()

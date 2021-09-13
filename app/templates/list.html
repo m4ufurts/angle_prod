@@ -4,11 +4,12 @@
 {% load getattribute %}
 
 {% block content %}
-<div class="container-fluid">
+<div class="container-fluid" style="overflow: hidden; flex: 1;">
     <a href="{% url create %}">
         <button class="w-25 mt-4 btn btn-outline-primary me-2" type="submit">Create</button>
     </a>
 
+    <div style="overflow: scroll;height: 100%;">
     <table class="table table-striped">
         <thead>
             <tr>
@@ -38,7 +39,6 @@
             {% endfor %}
         </tbody>
       </table>
-
-
+    </div>
 </div> 
 {% endblock %}
