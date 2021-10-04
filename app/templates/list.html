@@ -4,12 +4,12 @@
 {% load getattribute %}
 
 {% block content %}
-<div class="container-fluid" style="overflow: hidden; flex: 1;">
+<div class="container-fluid" style="overflow: hidden; flex: 1; display: flex; flex-direction: column;">
     <a href="{% url create %}">
         <button class="w-25 mt-4 btn btn-outline-primary me-2" type="submit">Create</button>
     </a>
 
-    <div style="overflow: scroll;height: 100%;">
+    <div style="overflow: auto;height: 100%;">
     <table class="table table-striped">
         <thead>
             <tr>
@@ -24,7 +24,7 @@
             {% for obj in info %}
             <tr>
                 {% for attr in display_list %}
-                <td >   
+                <td style="white-space: nowrap;">   
                     <a href="{% url update obj.id %}">
                         {{ obj | getattribute:attr }}
                     </a>

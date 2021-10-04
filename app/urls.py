@@ -1,9 +1,11 @@
+from app.views import Dashboard
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth.decorators import login_required
 
 from .views import Material, Produto, Quebra, Registro, Login
 from .views import Energia, Investimento, Operador, Processo, QuebraProcesso
+from .views import Dashboard
 
 urlpatterns = [
     #Registro
@@ -64,4 +66,7 @@ urlpatterns = [
     #Login
     path('login', Login.login, name="login"), 
     path('logout', Login.logout, name="logout"), 
+
+    #Dashboard
+    path('dashboard',login_required(Dashboard.index), name="dashboard"), 
 ]

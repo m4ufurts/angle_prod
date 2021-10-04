@@ -50,13 +50,21 @@ class Registro( BaseModel ):
         'produto',
         'codigo',
         'descricao',
-        'categoria',
-        'fornecedor',
-        'largura',
-        'comprimento',
-        'altura',
+        #'categoria',
+        #'fornecedor',
+        #'largura',
+        #'comprimento',
+        #'altura',
         'preco_pago',
+        'volume_por_ano',
+         'pcs',
+        'mao_obra',
+        'energia',
+        'depreciacao',
+        'custo_proc',
+        'custo_esperado', #should_cost
+        'ganho_anual',
+        'angle_anual',
         'data_registro',
-        'data_edicao',
-        'volume_por_ano'
+        'data_edicao'
     ]
