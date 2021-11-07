@@ -1,6 +1,7 @@
 from django.db.models.fields import DateTimeField
+
 from .BaseModel import BaseModel, models
-from . import Produto
+from . import Produto, Categoria, Fornecedor
 
 class Registro( BaseModel ):
     # codigo sequencial, gerado a cada cadastro (KEY_CODE)
@@ -16,10 +17,10 @@ class Registro( BaseModel ):
     descricao = models.CharField(max_length=255)
 
     # como o cliente classifica cada produto internamente (organização)
-    categoria = models.CharField(max_length=255)
+    categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
 
     # é de quem o cliente compra o produto
-    fornecedor = models.CharField(max_length=255)
+    fornecedor = models.ForeignKey(Fornecedor, on_delete=models.CASCADE)
 
     largura  = models.FloatField() 
     comprimento  = models.FloatField()
@@ -32,7 +33,7 @@ class Registro( BaseModel ):
     custo_calc = models.FloatField()
 
     # v2
-    volume_por_ano = models.FloatField()
+    volume_por_ano = models.FloatField(default=10000)
 
     pcs = models.FloatField()
     mao_obra = models.FloatField()

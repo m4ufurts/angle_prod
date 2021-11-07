@@ -1,6 +1,12 @@
 google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(drawChart);
 
+$( document ).ready(async ()=>{
+  console.log('ready')
+  const r = await $.get("/calibracao");
+  console.log(r);
+});
+
 function drawChart() {
   var data = google.visualization.arrayToDataTable([
     ['Age', 'Weight'],

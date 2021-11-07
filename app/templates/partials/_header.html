@@ -1,9 +1,11 @@
-<header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 border-bottom">
+<header style="border-bottom: 1px solid #8b8b8b!important" class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 border-bottom">
     <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
     </a>
 
     <ul class="nav mb justify-content-center">
         <li><a href="{% url 'ip_index' %}" class="nav-link px-2 link-secondary">Registro</a></li>
+        <li><a href="{% url 'calibracao_index' %}" class="nav-link px-2 link-dark">Calibracao</a></li>
+        {% if request.user.is_staff %}
         <li><a href="{% url 'rm_index' %}" class="nav-link px-2 link-dark">Material</a></li>
         <li><a href="{% url 'bd_index' %}" class="nav-link px-2 link-dark">Quebra</a></li>
         <li><a href="{% url 'pt_index' %}" class="nav-link px-2 link-dark">Produto</a></li>
@@ -12,6 +14,9 @@
         <li><a href="{% url 'operador_index' %}" class="nav-link px-2 link-dark">Operador</a></li>
         <li><a href="{% url 'processo_index' %}" class="nav-link px-2 link-dark">Processo</a></li>
         <li><a href="{% url 'quebra_processo_index' %}" class="nav-link px-2 link-dark">Quebra Proc</a></li>
+        <li><a href="{% url 'categoria_index' %}" class="nav-link px-2 link-dark">Categoria</a></li>
+        <li><a href="{% url 'fornecedor_index' %}" class="nav-link px-2 link-dark">Fornecedor</a></li>
+        {% endif %}
     </ul>
 
     <div class="text-end">

@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoDroid Dashboard</title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="{% static 'dashboard.js'%}"></script>
+    <link rel="stylesheet" href="{% static 'dashboard.css'%}">
+</head>
+<body>
+    <div class="container">
+        <div class="drawer">
+            <img src="" alt="">
+            <div class="item">Tarot</div>
+            <div class="item">Angle</div>
+            <div class="item">Farenheit</div>
+            <div class="item">Captive</div>
+        </div>
+        <div class="page">
+            <div class="menu">
+                <div class="toggle"></div>
+                <div class="logout">Logout</div>
+            </div>
+            <div class="content">
+                <div class="info">
+                    <div>
+                        <div class="item">
+                            <div class="value">$100</div>
+                            <div class="title">Gastos</div>
+                        </div>
+                        
+                        <div class="item">
+                            <div class="value">$86</div>
+                            <div class="title">Angle</div>
+                        </div>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Head1</th>
+                                <th>Head2</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Data1</td>
+                                <td>Data2</td>
+                            </tr>
+                            <tr>
+                                <td>Data1</td>
+                                <td>Data2</td>
+                            </tr>
+                            <tr>
+                                <td>Data1</td>
+                                <td>Data2</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="chart">
+                    <div id="chart_div"></div>
+                </div>
+                <div class="calibration">
+                    <div class="slidecontainer">
+                        <div class="title">Mão de Obra</div>
+                        <div class="value">49 R$/kg</div>
+                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                    </div>
+                    <div class="slidecontainer">
+                        <div class="title">Mão de Obra</div>
+                        <div class="value">49 R$/kg</div>
+                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                    </div>
+                    <div class="slidecontainer">
+                        <div class="title">Mão de Obra</div>
+                        <div class="value">49 R$/kg</div>
+                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

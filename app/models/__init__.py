@@ -1,4 +1,6 @@
 from .Produto import Produto
+from .Categoria import Categoria
+from .Fornecedor import Fornecedor
 
 from .Registro import Registro
 from .Material import Material
@@ -9,3 +11,5 @@ from .Investimento import Investimento
 from .Operador import Operador
 from .Processo import Processo
 from .QuebraProc import QuebraProc
+
+from .Calibracao import Calibracao

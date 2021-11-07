@@ -6,82 +6,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GoDroid Dashboard</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="{% static 'dashboard.js'%}"></script>
     <link rel="stylesheet" href="{% static 'dashboard.css'%}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 </head>
-<body>
-    <div class="container">
-        <div class="drawer">
-            <img src="" alt="">
-            <div class="item">Tarot</div>
-            <div class="item">Angle</div>
-            <div class="item">Farenheit</div>
-            <div class="item">Captive</div>
-        </div>
-        <div class="page">
-            <div class="menu">
-                <div class="toggle"></div>
-                <div class="logout">Logout</div>
-            </div>
-            <div class="content">
-                <div class="info">
-                    <div>
-                        <div class="item">
-                            <div class="value">$100</div>
-                            <div class="title">Gastos</div>
-                        </div>
-                        
-                        <div class="item">
-                            <div class="value">$86</div>
-                            <div class="title">Angle</div>
-                        </div>
-                    </div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Head1</th>
-                                <th>Head2</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Data1</td>
-                                <td>Data2</td>
-                            </tr>
-                            <tr>
-                                <td>Data1</td>
-                                <td>Data2</td>
-                            </tr>
-                            <tr>
-                                <td>Data1</td>
-                                <td>Data2</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="chart">
-                    <div id="chart_div"></div>
-                </div>
-                <div class="calibration">
-                    <div class="slidecontainer">
-                        <div class="title">Mão de Obra</div>
-                        <div class="value">49 R$/kg</div>
-                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-                    </div>
-                    <div class="slidecontainer">
-                        <div class="title">Mão de Obra</div>
-                        <div class="value">49 R$/kg</div>
-                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-                    </div>
-                    <div class="slidecontainer">
-                        <div class="title">Mão de Obra</div>
-                        <div class="value">49 R$/kg</div>
-                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-                    </div>
+<body style="font-size: 12px;">
+    
+    <div class="container-fluid flex-column d-flex" style="height: 100vh;">
+        
+        <div class="container-fluid flex-row d-flex p-0" style=" flex: 1">
+            {% include "partials/_drawer.html" %}
+            <div class="page">
+                <h3 style="margin: 20px;">Dashboard</h3>
+                <div class="content">
+                    
+
+                    {% include "partials/_info.html" %}
+                    {% include "partials/_chart.html" %}
+                    {% include "partials/_calibration.html" %}
                 </div>
             </div>
         </div>
+
+
+        {% include "partials/_footer.html" %}
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>
 </html>
