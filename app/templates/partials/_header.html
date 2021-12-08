@@ -5,6 +5,7 @@
     <ul class="nav mb justify-content-center">
         <li><a href="{% url 'ip_index' %}" class="nav-link px-2 link-secondary">Registro</a></li>
         <li><a href="{% url 'calibracao_index' %}" class="nav-link px-2 link-dark">Calibracao</a></li>
+        <li><a href="{% url 'dashboard_index' %}" class="nav-link px-2 link-dark">Dashboard</a></li>
         {% if request.user.is_staff %}
         <li><a href="{% url 'rm_index' %}" class="nav-link px-2 link-dark">Material</a></li>
         <li><a href="{% url 'bd_index' %}" class="nav-link px-2 link-dark">Quebra</a></li>

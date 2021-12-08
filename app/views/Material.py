@@ -11,6 +11,7 @@ def index(request):
         'create' : 'rm_create',
         'update' : 'rm_update',
         'delete' : 'rm_delete',
+        'tela' : 'Material'
     }
 
     return render(request, 'list.html', context)

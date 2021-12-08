@@ -5,9 +5,12 @@
 
 {% block content %}
 <div class="container-fluid" style="overflow: hidden; flex: 1; display: flex; flex-direction: column;">
-    <a href="{% url create %}">
-        <button class="w-25 mt-4 btn btn-outline-primary me-2" type="submit">Create</button>
-    </a>
+    <div class="d-flex justify-content-between align-items-center">
+        <h5 style="margin: 15px 5px; display: inline;">{{tela}}</h5>
+        <a href="{% url create %}">
+            <button style="width: 200px;" class="mt-4 btn btn-outline-primary me-2 p-0" type="submit">Criar</button>
+        </a>
+    </div>
 
     <div style="overflow: auto;height: 100%;">
     <table class="table table-striped">

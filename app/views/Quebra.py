@@ -9,6 +9,7 @@ def index(request):
         'create' : 'bd_create',
         'update' : 'bd_update',
         'delete' : 'bd_delete',
+        'tela' : 'Quebra'
     }
 
     return render(request, 'list.html', context)

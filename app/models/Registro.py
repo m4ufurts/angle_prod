@@ -26,6 +26,9 @@ class Registro( BaseModel ):
     comprimento  = models.FloatField()
     altura  = models.FloatField()
 
+    #peso real objeto
+    peso = models.FloatField(default=0)
+
     # é o preço pago pelo cliente
     preco_pago = models.FloatField()
 

@@ -1,6 +1,9 @@
+from typing import Dict
+from django.http.response import JsonResponse
 from django.shortcuts import redirect, render
 from django.views import generic
 from app.models import Processo, Produto, Registro, Quebra, Material,QuebraProc, Calibracao
+from django.db.models.signals import pre_save, post_save
 
 def index(request):
     context =  { 
@@ -9,28 +12,98 @@ def index(request):
         'create' : 'ip_create',
         'update' : 'ip_update',
         'delete' : 'ip_delete',
+        'tela' : 'Registro'
     }
 
     return render(request, 'list.html', context)
+    
+class create(generic.CreateView):
+    model = Registro
+    fields =  [
+        'produto',
+        'codigo',
+        'descricao',
+        'categoria',
+        'fornecedor',
+        'largura',
+        'comprimento',
+        'altura',
+        'peso',
+        #'preco_pago',
+        'volume_por_ano',
+    ]
 
-def calc(form) :
-    produto = form.instance.produto
+    template_name = "save.html"
+    success_url = "/"
+
+    def form_valid(self, form):
+        form.instance.usuario = self.request.user
+        return super().form_valid(form)
+
+class update(generic.UpdateView):
+    model = Registro
+    fields =  [
+        'produto',
+        'codigo',
+        'descricao',
+        'categoria',
+        'fornecedor',
+        'largura',
+        'comprimento',
+        'altura',
+        'peso',
+        'preco_pago',
+        'volume_por_ano',
+    ]
+    template_name = "save.html"
+    success_url = "/"
+
+    def form_valid(self, form):
+        form.instance.usuario = self.request.user
+
+        return super().form_valid(form)
+
+def delete(request, delete_id):
+    Registro.objects.get(id=delete_id).delete()
+    return redirect('/')
+
+def listagem(request):
+    registros = Registro.objects.filter(usuario=request.user).values('descricao', 'ganho_anual', 'angle_anual', 'custo_esperado', 'categoria__nome', 'fornecedor__nome')
+    return JsonResponse( list(registros), safe=False )
+
+def resumo(request):
+    registros = Registro.objects.filter(usuario=request.user).values('ganho_anual', 'angle_anual')
+
+    resposta = dict()
+    resposta["ganho_anual"] = 0
+    resposta["angle_anual"] = 0
+
+    for r in registros:
+        ganho_anual = r.get('ganho_anual')
+        angle_anual = r.get('angle_anual')
+
+        resposta["ganho_anual"] += float(ganho_anual)
+        resposta["angle_anual"] += float(angle_anual)
+
+    return JsonResponse( resposta, safe=False )
+
+def calcular(sender, instance, **kwargs) :
+    produto = instance.produto
     quebras =  Quebra.objects.filter(produto=produto.id)
     calibracao =  Calibracao.objects.get(produto=produto.id)
 
     print('calibracao', calibracao)
 
     #distâncias em milimetros
-    largura =  form.instance.largura
-    comprimento =  form.instance.comprimento
-    altura =  form.instance.altura
+    largura =  instance.largura
+    comprimento =  instance.comprimento
+    altura =  instance.altura
     
     #dimensão em metros
     dimensao = largura * comprimento * altura / 1000 * (1 + produto.perda) * produto.offset
 
     print('volume', dimensao)
     
-
     #custo associado a matéria-prima
     custo = 0
     peso = 0
@@ -87,101 +160,33 @@ def calc(form) :
 
     print('should_cost', should_cost)
 
-    angle_anual = should_cost * form.instance.volume_por_ano
+    angle_anual = should_cost * instance.volume_por_ano
 
-    return {
-        'custo': custo, 
-        'pcs': media, 
-        'mao_obra': mao_obra, 
-        'custo_energia': custo_energia, 
-        'depreciacao': depreciacao,
-        'custo_proc' : custo_proc,
-        'should_cost' : should_cost,
-        'angle_anual': angle_anual
-    }
-    
-class create(generic.CreateView):
-    model = Registro
-    fields =  [
-        'produto',
-        'codigo',
-        'descricao',
-        'categoria',
-        'fornecedor',
-        'largura',
-        'comprimento',
-        'altura',
-        #'preco_pago',
-        'volume_por_ano',
-    ]
+    #custo calculado e should_cost são a mesma coisa?!??
+    instance.custo_calc = custo
+    instance.preco_pago = custo
+    instance.pcs = media
+    instance.mao_obra = mao_obra
+    instance.custo_proc = custo_proc
+    instance.energia = custo_energia
+    instance.depreciacao = depreciacao
+    instance.custo_esperado = should_cost
+    instance.angle_anual = angle_anual
+    instance.ganho_anual = angle_anual
 
-    template_name = "save.html"
-    success_url = "/"
+#calcula as informações derivadas
+pre_save.connect(calcular, sender=Registro)
 
-    def form_valid(self, form):
-        r = calc(form)
-        print(r)
+def atualizar(sender, instance, created, **kwargs):
+    if not created:
+        registros = []
+        if sender == Produto:
+            registros = Registro.objects.filter(produto=instance)
 
-        i = form.instance 
+        for obj in registros:
+            obj.save()
 
-        #custo calculado e should_cost são a mesma coisa?!??
-        i.custo_calc = r["custo"]
-        i.preco_pago = r["custo"]
-        i.pcs = r["pcs"]
-        i.mao_obra = r["mao_obra"]
-        i.custo_proc = r["custo_proc"]
-        i.energia = r["custo_energia"]
-        i.depreciacao = r["depreciacao"]
-        i.custo_esperado = r["should_cost"]
-        i.angle_anual = r["angle_anual"]
-        i.ganho_anual = r["angle_anual"]
-
-        i.usuario = self.request.user
-
-        return super().form_valid(form)
-
-class update(generic.UpdateView):
-    model = Registro
-    fields =  [
-        'produto',
-        'codigo',
-        'descricao',
-        'categoria',
-        'fornecedor',
-        'largura',
-        'comprimento',
-        'altura',
-        'preco_pago',
-        'volume_por_ano',
-    ]
-    template_name = "save.html"
-    success_url = "/"
-
-    def form_valid(self, form):
-        r = calc(form)
-        print(r)
-
-        i = form.instance 
-
-        #custo calculado e should_cost são a mesma coisa?!??
-        i.custo_calc = r["custo"]
-        i.preco_pago = r["custo"]
-        i.pcs = r["pcs"]
-        i.mao_obra = r["mao_obra"]
-        i.custo_proc = r["custo_proc"]
-        i.energia = r["custo_energia"]
-        i.depreciacao = r["depreciacao"]
-        i.custo_esperado = r["should_cost"]
-        i.angle_anual = r["angle_anual"]
-        i.ganho_anual = r["angle_anual"]
-
-        i.usuario = self.request.user
-
-        return super().form_valid(form)
-
-def delete(request, delete_id):
-    Registro.objects.get(id=delete_id).delete()
-    return redirect('/')
-
-
-
+#atualiza o 'Registro' baseado em todos as suas ForeignKey (relevantes)
+post_save.connect(atualizar, sender=Produto)
+#post_save.connect(atualizar, sender=Processo)
+#post_save.connect(atualizar, sender=QuebraProc)

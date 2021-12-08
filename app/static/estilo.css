@@ -1,0 +1,114 @@
+*{
+  padding: 0;
+  margin: 0;
+}
+
+.container{
+  display: flex;
+}
+
+.drawer {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.page {
+  /*width: 80%;*/
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.menu {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 20px;
+  background-color: #aaa;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.info {
+  width: 50%;
+}
+
+.chart {
+  /*width: 50%;*/
+  width: 100%;
+}
+
+.calibration {
+  padding: 10px;
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.calibration > div {
+  display: flex;
+  width: 100% ;
+}
+
+.slidecontainer {
+  width: 50%;
+  padding: 0 10px;
+}
+.slidecontainer input {
+  width: 100%;
+}
+
+#select_calibration {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+div#chart_div {
+  padding: 10px;
+  width: 100%;
+}
+
+.info > div {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+}
+
+table {
+  width: 100%;
+  text-align: center;
+}
+
+#telas a {
+    padding: 3px 0;
+}
+
+#telas a:hover {
+  color: #0d6efd;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+#angle_anual, #ganho_anual {
+  font-size: 16px;
+  text-align: center;
+}
+
+.info .title {
+  font-weight: bold;
+  text-align: center;
+}

@@ -9,6 +9,7 @@ def index(request):
         'create' : 'operador_create',
         'update' : 'operador_update',
         'delete' : 'operador_delete',
+        'tela' : 'Operador'
     }
 
     return render(request, 'list.html', context)

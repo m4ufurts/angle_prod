@@ -1,19 +1,28 @@
                     
                     
 <div class="calibration">
-    <div class="slidecontainer">
-        <div class="title">Mão de Obra</div>
-        <div class="value">49 R$/kg</div>
-        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+    <select id="select_calibration" onchange="selecionar_calibracao(event)">
+    </select>
+
+    <div>
+        <div id="materia_prima" class="slidecontainer">
+            <div class="title">Matéria Prima ( <span class="value">49 R$/kg</span> )</div>
+            <input onchange="atualizar_calibracao(event, 'materia_prima')" type="range" min="-100" max="100" class="slider">
+        </div>
+        <div id="processo" class="slidecontainer">
+            <div class="title">Processo ( <span class="value">49 R$/kg</span> )</div>
+            <input onchange="atualizar_calibracao(event, 'processo')" type="range" min="-100" max="100" value="0" class="slider">
+        </div>
     </div>
-    <div class="slidecontainer">
-        <div class="title">Mão de Obra</div>
-        <div class="value">49 R$/kg</div>
-        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+    <div>
+        <div id="produtividade" class="slidecontainer">
+            <div class="title">Produtividade ( <span class="value">49 R$/kg</span> )</div>
+            <input onchange="atualizar_calibracao(event, 'produtividade')" type="range" min="-100" max="100" value="0" class="slider">
+        </div>
+        <div id="markup" class="slidecontainer">
+            <div class="title">Markup ( <span class="value">49 R$/kg</span> )</div>
+            <input onchange="atualizar_calibracao(event, 'markup')" type="range" min="-100" max="100" value="0" class="slider">
+        </div>
     </div>
-    <div class="slidecontainer">
-        <div class="title">Mão de Obra</div>
-        <div class="value">49 R$/kg</div>
-        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-    </div>
+    
 </div>

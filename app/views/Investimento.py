@@ -9,6 +9,7 @@ def index(request):
         'create' : 'investimento_create',
         'update' : 'investimento_update',
         'delete' : 'investimento_delete',
+        'tela' : 'Investimento'
     }
 
     return render(request, 'list.html', context)

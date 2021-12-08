@@ -11,6 +11,7 @@ def index(request):
         'create' : 'fornecedor_create',
         'update' : 'fornecedor_update',
         'delete' : 'fornecedor_delete',
+        'tela' : 'Fornecedor'
     }
 
     return render(request, 'list.html', context)

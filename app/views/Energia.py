@@ -9,6 +9,7 @@ def index(request):
         'create' : 'energia_create',
         'update' : 'energia_update',
         'delete' : 'energia_delete',
+        'tela' : 'Energia'
     }
 
     return render(request, 'list.html', context)

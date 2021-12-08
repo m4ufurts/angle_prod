@@ -11,6 +11,7 @@ def index(request):
         'create' : 'categoria_create',
         'update' : 'categoria_update',
         'delete' : 'categoria_delete',
+        'tela' : 'Categoria'
     }
 
     return render(request, 'list.html', context)

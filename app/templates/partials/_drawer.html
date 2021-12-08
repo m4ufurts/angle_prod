@@ -59,13 +59,30 @@
 </svg>
 
 <main style="border-right: 1px solid #8b8b8b!important;">
-  <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px; height: 100%;">
+  <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 200px; height: 100%;">
     <ul class="nav nav-pills flex-column mb-auto" style="height: 100%;">
       <li class="nav-item">
         <a href="#" class="nav-link active" aria-current="page">
           <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"/></svg>
           Tarot
         </a>
+        <ul id="telas" class="nav mb justify-content-center d-flex flex-column mx-4">
+          <li><a href="{% url 'calibracao_index' %}" class="nav-link px-2 link-dark">Calibração</a></li>
+          <li><a href="{% url 'dashboard_index' %}" class="nav-link px-2 link-dark">Dashboard</a></li>
+          <li><a href="{% url 'ip_index' %}" class="nav-link px-2 link-secondary">Registro</a></li>
+          {% if request.user.is_staff %}
+          <li><a href="{% url 'categoria_index' %}" class="nav-link px-2 link-dark">Categoria</a></li>
+          <li><a href="{% url 'energia_index' %}" class="nav-link px-2 link-dark">Energia</a></li>
+          <li><a href="{% url 'fornecedor_index' %}" class="nav-link px-2 link-dark">Fornecedor</a></li>
+          <li><a href="{% url 'investimento_index' %}" class="nav-link px-2 link-dark">Investimento</a></li>
+          <li><a href="{% url 'rm_index' %}" class="nav-link px-2 link-dark">Material</a></li>
+          <li><a href="{% url 'operador_index' %}" class="nav-link px-2 link-dark">Operador</a></li>
+          <li><a href="{% url 'processo_index' %}" class="nav-link px-2 link-dark">Processo</a></li>
+          <li><a href="{% url 'pt_index' %}" class="nav-link px-2 link-dark">Produto</a></li>
+          <li><a href="{% url 'bd_index' %}" class="nav-link px-2 link-dark">Quebra</a></li>
+          <li><a href="{% url 'quebra_processo_index' %}" class="nav-link px-2 link-dark">Quebra Proc</a></li>
+          {% endif %}
+        </ul>
       </li>
       <li>
         <a href="#" class="nav-link link-dark">
@@ -85,10 +102,8 @@
           Captive
         </a>
       </li>
-      <li style="margin-top: auto;">
+      <li style="margin-top: auto; text-align: center;">
         <a href="{% url 'logout' %}" class="nav-link link-dark">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
-          {{request.user.username}}
           Sair
         </a>
       </li>

@@ -1,21 +1,36 @@
-{% extends 'base.html' %}
-
-{% block content %}
-<div class="container" style="max-width: 700px;">
-    <form class="w-50" style="margin: 0 auto" action="{% url 'login' %}" method="POST">
-        {% csrf_token %}
-        <div class="mb-3">
-            <label for="username" class="form-label">Username</label>
-            <input class="form-control" type="text" name="username" id="username">
-        </div>
-
-        <div class="mb-3">
-            <label for="password" class="form-label">Password</label>
-            <input class="form-control mb-3" type="password" name="password" id="password">
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoDroid</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'estilo.css'%}">
+</head>
+<body style="font-size: 12px;">
+    <div class="container-fluid flex-column d-flex p-0" style="height: 100vh;">
+        <!--{% include "partials/_header.html" %}-->
+        <div style="display: flex; flex: 1">
+            <div class="container" style="max-width: 700px;">
+                <form class="w-50" style="margin: auto" action="{% url 'login' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <input class="form-control" type="text" placeholder="Usuário" name="username" id="username">
+                    </div>
+            
+                    <div class="mb-3">
+                        <input class="form-control mb-3" type="password" placeholder="Senha" name="password" id="password">
+                    </div>
+                    
+                    <button class="btn btn-outline-primary me-2 w-100 p-1">Entrar</button>
+                </form>
+            </div> 
         </div>
         
-        
-        <button class="btn btn-outline-primary me-2">Login</button>
-    </form>
-</div> 
-{% endblock %}
+        {% include "partials/_footer.html" %}
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+</body>
+</html>

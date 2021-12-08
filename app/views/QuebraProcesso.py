@@ -9,6 +9,7 @@ def index(request):
         'create' : 'quebra_processo_create',
         'update' : 'quebra_processo_update',
         'delete' : 'quebra_processo_delete',
+        'tela' : 'Quebra Processo'
     }
 
     return render(request, 'list.html', context)

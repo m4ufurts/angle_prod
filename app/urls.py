@@ -86,7 +86,9 @@ urlpatterns = [
     path('logout', Login.logout, name="logout"), 
 
     #Dashboard
-    path('dashboard',login_required(Dashboard.index), name="dashboard"), 
+    path('dashboard',login_required(Dashboard.index), name="dashboard_index"), 
     path('dashboard/calibracao', login_required(Calibracao.listagem)), 
-    path('dashboard/calibracao/<int:pk>', login_required(Calibracao.get)), 
+    path('dashboard/calibracao/<int:pk>', login_required(Calibracao.salvar)), 
+    path('dashboard/registro', login_required(Registro.listagem)),
+    path('dashboard/registro_resumo', login_required(Registro.resumo)), 
 ]
